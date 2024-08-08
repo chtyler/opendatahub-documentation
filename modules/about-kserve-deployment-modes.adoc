@@ -1,0 +1,47 @@
+:_module-type: CONCEPT
+
+[id='about-kserve-deployment-modes_{context}']
+= About KServe deployment modes
+
+Kserve supports two types of deployment modes: Serverless and Raw deployment. There are both advantages and disadvantages to using each of these deployment modes:
+
+== Serverless mode
+
+Advantages:
+
+* Enables autoscaling based on request volume: 
+** Resources scale up automatically when receiving incoming requests.
+** Optimizes resource usage and maintains performance during peak times.
+
+* Supports scale down to and from zero using Knative:
+** Allows resources to scale down completely when there are no incoming requests.
+** Saves costs by not running idle resources.
+
+Disadvantages:
+
+* Has customization limitations: 
+** Serverless is limited to Knative, such as when mounting multiple volumes.
+
+* Dependency on Knative for scaling: 
+** Introduces additional complexity in setup and management compared to traditional scaling methods.
+
+== Raw deployment mode
+
+Advantages:
+
+* Enables deployment with Kubernetes resources, such as Deployment, Service, Ingress, and Horizontal Pod Autoscaler: 
+** Provides full control over Kubernetes resources, allowing for detailed customization and configuration of deployment settings.
+
+* Unlocks Knative limitations, such as mounting multiple volumes. 
+** Overcomes specific restrictions of Knative. 
+** Beneficial for applications requiring complex configurations or multiple storage mounts.
+
+Disadvantages:
+
+* Does not support automatic scaling:
+** Does not support automatic scaling down to zero resources when idle.
+** Might result in higher costs during periods of low traffic.
+
+* Requires manual management of scaling.
+
+
